@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface IClientDB {
     Client save(Client client);
     List<Client> findAll();
-    Client findById(Long id);
+    Optional<Client> findById(Long id);
     void deleteById(Long id);
     Optional<Client> findByDni(String dni);
     Optional<Client> findByEmail(String email);

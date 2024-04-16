@@ -23,13 +23,10 @@ public class ClientDB implements IClientDB {
     }
 
     @Override
-    public Client findById(Long id) {
-        for (Client client : clients) {
-            if (client.getId().equals(id)) {
-                return client;
-            }
-        }
-        return null;
+    public Optional<Client> findById(Long id) {
+        return clients.stream()
+                .filter(client -> client.getId().equals(id))
+                .findFirst();
     }
 
     @Override

@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/client")
@@ -21,45 +20,45 @@ public class ClientController {
     @PostMapping("/create")
     public ResponseEntity<Client> createClient(@RequestBody Client client) {
         Client createdClient = clientService.createClient(client);
-        return new ResponseEntity<>(createdClient, HttpStatus.CREATED);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdClient);
     }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<Client> updateClient(@PathVariable Long id, @RequestBody Client client) {
         Client updatedClient = clientService.updateClient(id, client);
-        return new ResponseEntity<>(updatedClient, HttpStatus.OK);
+        return ResponseEntity.ok(updatedClient);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteClient(@PathVariable Long id) {
         clientService.deleteClient(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/all")
     public ResponseEntity<List<Client>> getAllClients() {
         List<Client> clients = clientService.getAllClients();
-        return new ResponseEntity<>(clients, HttpStatus.OK);
+        return ResponseEntity.ok(clients);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Client> getClientById(@PathVariable Long id) {
-        Optional<Client> clientOptional = clientService.getClientById(id);
-        return clientOptional.map(client -> new ResponseEntity<>(client, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        return clientService.getClientById(id)
+                .map(client -> ResponseEntity.ok(client))
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/dni/{dni}")
     public ResponseEntity<Client> getClientByDni(@PathVariable String dni) {
-        Optional<Client> clientOptional = clientService.getClientByDni(dni);
-        return clientOptional.map(client -> new ResponseEntity<>(client, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        return clientService.getClientByDni(dni)
+                .map(client -> ResponseEntity.ok(client))
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/email/{email}")
     public ResponseEntity<Client> getClientByEmail(@PathVariable String email) {
-        Optional<Client> clientOptional = clientService.getClientByEmail(email);
-        return clientOptional.map(client -> new ResponseEntity<>(client, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        return clientService.getClientByEmail(email)
+                .map(client -> ResponseEntity.ok(client))
+                .orElse(ResponseEntity.notFound().build());
     }
 }

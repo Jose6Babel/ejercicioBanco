@@ -22,21 +22,25 @@ public class ClientService implements IClientService {
 
     @Override
     public Client updateClient(Long id, Client client) {
-        Optional<Client> existingClientOptional = Optional.ofNullable(clientRepository.findById(id));
+        Optional<Client> existingClientOptional = clientRepository.findById(id);
         if (existingClientOptional.isPresent()) {
             Client existingClient = existingClientOptional.get();
-            existingClient.setId(id);
-            existingClient.setDni(client.getDni());
-            existingClient.setName(client.getName());
-            existingClient.setAddress(client.getAddress());
-            existingClient.setEmail(client.getEmail());
-            existingClient.setPhoneNumber(client.getPhoneNumber());
-            existingClient.setPrimaryBranch(client.getPrimaryBranch());
-            existingClient.setAccounts(client.getAccounts());
+            updateClientData(existingClient, client);
             return clientRepository.save(existingClient);
         } else {
             throw new RuntimeException("Client not found with id: " + id);
         }
+    }
+
+    private void updateClientData(Client existingClient, Client updatedClient) {
+        existingClient.setId(updatedClient.getId());
+        existingClient.setDni(updatedClient.getDni());
+        existingClient.setName(updatedClient.getName());
+        existingClient.setAddress(updatedClient.getAddress());
+        existingClient.setEmail(updatedClient.getEmail());
+        existingClient.setPhoneNumber(updatedClient.getPhoneNumber());
+        existingClient.setPrimaryBranch(updatedClient.getPrimaryBranch());
+        existingClient.setAccounts(updatedClient.getAccounts());
     }
 
     @Override
@@ -51,7 +55,7 @@ public class ClientService implements IClientService {
 
     @Override
     public Optional<Client> getClientById(Long id) {
-        return Optional.ofNullable(clientRepository.findById(id));
+        return clientRepository.findById(id);
     }
 
     @Override
