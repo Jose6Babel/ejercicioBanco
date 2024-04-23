@@ -1,5 +1,6 @@
 package org.example.service;
 
+import org.example.model.Account;
 import org.example.model.Client;
 
 import java.util.List;
@@ -13,4 +14,5 @@ public interface IClientService {
     Optional<Client> getClientById(Long id);
     Optional<Client> getClientByDni(String dni);
     Optional<Client> getClientByEmail(String email);
+    List<Account> getClientAccounts(Long clientId);
 }

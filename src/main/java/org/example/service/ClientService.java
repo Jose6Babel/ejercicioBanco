@@ -1,7 +1,8 @@
 package org.example.service;
 
+import org.example.model.Account;
 import org.example.model.Client;
-import org.example.repository.ClientDB;
+import org.example.repository.IClientDB;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,10 +10,12 @@ import java.util.Optional;
 
 @Service
 public class ClientService implements IClientService {
-    private final ClientDB clientRepository;
+    private final IClientDB clientRepository;
+    private final IAccountService accountService;
 
-    public ClientService(ClientDB clientRepository) {
+    public ClientService(IClientDB clientRepository, IAccountService accountService) {
         this.clientRepository = clientRepository;
+        this.accountService = accountService;
     }
 
     @Override
@@ -33,7 +36,6 @@ public class ClientService implements IClientService {
     }
 
     private void updateClientData(Client existingClient, Client updatedClient) {
-        existingClient.setId(updatedClient.getId());
         existingClient.setDni(updatedClient.getDni());
         existingClient.setName(updatedClient.getName());
         existingClient.setAddress(updatedClient.getAddress());
@@ -66,5 +68,16 @@ public class ClientService implements IClientService {
     @Override
     public Optional<Client> getClientByEmail(String email) {
         return clientRepository.findByEmail(email);
+    }
+
+    @Override
+    public List<Account> getClientAccounts(Long clientId) {
+        Optional<Client> clientOptional = clientRepository.findById(clientId);
+        if (clientOptional.isPresent()) {
+            Client client = clientOptional.get();
+            return client.getAccounts();
+        } else {
+            throw new RuntimeException("Client not found with id: " + clientId);
+        }
     }
 }
