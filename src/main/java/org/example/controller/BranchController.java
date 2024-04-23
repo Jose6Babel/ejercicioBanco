@@ -9,8 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
-@RequestMapping(value = "/branch")
+@Controller
 public class BranchController {
 
     @Autowired
@@ -20,23 +19,23 @@ public class BranchController {
         this.branchService = branchService;
     }
 
-    @GetMapping
+    @GetMapping(value = "/branch")
     public String listBranch(Model model) {
         model.addAttribute("listBranch", branchService.listBranch());
         return "branch";
     }
 
-    @PostMapping(value = "/add")
+    @PostMapping(value = "/branch/add")
     public void addBranch(@ModelAttribute("branch") Branch branch) {
         branchService.addBranch(branch);
     }
 
-    @DeleteMapping(value = "/delete/{id}")
+    @PostMapping(value = "/branch/delete/{id}")
     public void deleteBranch( @PathVariable("id") Long id ) {
         branchService.deleteBranch(id);
     }
 
-    @PostMapping(value = "/edit/{id}")
+    @PostMapping(value = "/branch/edit/{id}")
     public void editBranch( @PathVariable("id") Long id,  @RequestBody Branch branch) {
         branchService.editBranch(id, branch);
     }

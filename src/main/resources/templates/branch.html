@@ -29,7 +29,6 @@
 <table>
     <thead>
     <tr>
-        <!--    <th>ID</th>-->
         <th>Nombre</th>
         <th>Direccion</th>
         <th>Opciones</th>
@@ -47,25 +46,22 @@
             <form th:action="@{/sucursal/delete/} + ${sucursal.id}" method="post">
                 <button type="submit" class="btn btn-primary">Eliminar</button>
             </form>
-
         </td>
-
     </tr>
     </tbody>
 </table>
 
 <hr>
 
-<!-- Formulario para agregar un nuevo producto -->
 <h2>Agregar Nueva Sucursal</h2>
-<form th:action="@{/branch/add}" th:object="@{/branch}" method="post">
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" th:field="*{name}" name="name" required>
-    <br>
-    <label for="direccion">Direccion:</label>
-    <input type="text" id="direccion" th:field="*{direction}" name="direction" required>
-    <br>
-    <button type="submit">Agregar Sucursal</button>
-</form>
+<!--<form th:action="@{/branch/add}" th:object="@{/branch}" method="post">-->
+<!--    <label for="nombre">Nombre:</label>-->
+<!--    <input type="text" id="nombre" th:field="*{name}" name="name" required>-->
+<!--    <br>-->
+<!--    <label for="direccion">Direccion:</label>-->
+<!--    <input type="text" id="direccion" th:field="*{direction}" name="direction" required>-->
+<!--    <br>-->
+<!--    <button type="submit">Agregar Sucursal</button>-->
+<!--</form>-->
 </body>
 </html>
