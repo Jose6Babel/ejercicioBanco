@@ -22,8 +22,8 @@ public class AccountService implements IAccountService{
     }
 
     @Override
-    public Account newAccount() {
-        return accountDB.createAccount();
+    public Account newAccount(Account account) {
+        return accountDB.createAccount(account);
     }
 
     @Override

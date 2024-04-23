@@ -10,7 +10,7 @@ public interface IAccountDB {
 
     List<Account> getAccounts();
 
-    Account createAccount();
+    Account createAccount(Account account);
 
     Account updateAccount(Account account, Account updatedAccount);
 

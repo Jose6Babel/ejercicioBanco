@@ -22,8 +22,7 @@ public class AccountDB implements IAccountDB{
     }
 
     @Override
-    public Account createAccount() {
-        Account account = new Account();
+    public Account createAccount(Account account) {
         accountRepository.add(account);
         return account;
     }

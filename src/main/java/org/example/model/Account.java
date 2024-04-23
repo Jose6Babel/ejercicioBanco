@@ -12,10 +12,9 @@ public class Account {
     public Account() {
 
     }
-    public Account(String accountNumber, Branch branch, Long clientId, double balance) {
+    public Account(String accountNumber, Branch branch, double balance) {
         this.accountNumber = accountNumber;
         this.branch = branch;
-        this.clientId = clientId;
         this.balance = balance;
     }
 

@@ -1,14 +1,13 @@
 package org.example.service;
 
 import org.example.model.Account;
-import org.example.model.DTO.AccountDTO;
 
 import java.util.List;
 
 public interface IAccountService {
     List<Account> getAccounts();
 
-    Account newAccount();
+    Account newAccount(Account account);
 
     Account updateAccount(Account accountData);
 
