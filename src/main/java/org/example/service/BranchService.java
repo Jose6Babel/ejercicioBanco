@@ -19,16 +19,17 @@ public class BranchService implements IBranchService {
     }
 
     @Override
-    public void editBranch(Long id) {
+    public void editBranch(Long id, Branch branch) {
         List<Branch> listBranch = listBranch();
-        Branch branchEdit = null;
 
         for (Branch branchFound: listBranch) {
             if (branchFound.getId() == id) {
-                branchEdit = branchFound;
+                branchFound.setDirection(branch.getDirection());
+                branchFound.setName(branch.getName());
+                branchFound.setDirector(branch.getDirector());
+                iBranchDB.editBranch(branchFound);
             }
         }
-        iBranchDB.editBranch(branchEdit);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package org.example.controller;
 
 import org.example.model.Branch;
+import org.example.model.Client;
 import org.example.service.BranchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
@@ -31,9 +32,10 @@ public class BranchController {
     public void deleteBranch( @PathVariable("id") Long id ) {
         branchService.deleteBranch(id);
     }
+
     @PostMapping(value = "/edit/{id}")
-    public void editBranch( @PathVariable("id") Long id ) {
-        branchService.editBranch(id);
+    public void editBranch( @PathVariable("id") Long id,  @RequestBody Branch branch) {
+        branchService.editBranch(id, branch);
     }
 
 }
