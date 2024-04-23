@@ -5,6 +5,7 @@ import org.example.model.Client;
 import org.example.service.BranchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,13 +19,15 @@ public class BranchController {
     public BranchController(BranchService branchService) {
         this.branchService = branchService;
     }
+
     @GetMapping
     public String listBranch(Model model) {
         model.addAttribute("listBranch", branchService.listBranch());
-        return "/branch";
+        return "branch";
     }
+
     @PostMapping(value = "/add")
-    public void addBranch(@ModelAttribute Branch branch) {
+    public void addBranch(@ModelAttribute("branch") Branch branch) {
         branchService.addBranch(branch);
     }
 

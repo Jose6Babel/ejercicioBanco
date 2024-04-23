@@ -29,7 +29,7 @@ public class BranchDB implements IBranchDB {
                 indexList = x;
             }
         }
-        branchRepository.add(indexList, branch);
+        branchRepository.set(indexList, branch);
     }
 
     @Override

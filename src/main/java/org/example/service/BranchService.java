@@ -22,7 +22,7 @@ public class BranchService implements IBranchService {
     public void editBranch(Long id, Branch branch) {
         List<Branch> listBranch = listBranch();
 
-        for (Branch branchFound: listBranch) {
+        for (Branch branchFound : listBranch) {
             if (branchFound.getId() == id) {
                 branchFound.setDirection(branch.getDirection());
                 branchFound.setName(branch.getName());
@@ -44,7 +44,7 @@ public class BranchService implements IBranchService {
 
         for (Branch branchFound: listBranch) {
             if (branchFound.getId() == id) {
-                branchFound = branchDelete;
+                branchDelete = branchFound;
             }
         }
         iBranchDB.deleteBranch(branchDelete);
