@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -13,31 +13,27 @@
     <h1>Accounts</h1>
     <table class="table table-hover">
         <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-        </tr>
+            <tr>
+                <th scope="col">Account ID</th>
+                <th scope="col">Balance</th>
+            </tr>
         </thead>
         <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-        </tr>
+            <tr th:each="account : ${accounts}">
+                <!--    <td th:text="${sucursal.id}"></td>-->
+                <td th:text="${account.accountNumber}"></td>
+                <td th:text="${account.balance}"></td>
+                <td>
+                    <a th:href="@{/account/} + ${account.accountNumber}">
+                        DETALLE
+                    </a>
+                    <form th:action="@{/account/delete} + ${account.accountNumber}" method="post">
+                        <button type="submit" class="btn btn-primary">Eliminar</button>
+                    </form>
+
+                </td>
+
+            </tr>
         </tbody>
     </table>
 </body>

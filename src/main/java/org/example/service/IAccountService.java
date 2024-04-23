@@ -6,7 +6,7 @@ import org.example.model.DTO.AccountDTO;
 import java.util.List;
 
 public interface IAccountService {
-    List<AccountDTO> getAccounts();
+    List<Account> getAccounts();
 
     Account newAccount();
 

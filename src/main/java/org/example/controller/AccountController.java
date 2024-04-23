@@ -27,13 +27,14 @@ public class AccountController {
     public Account createAccount () {
         return accountService.newAccount();
     }
+
     @PutMapping
     public AccountDTO modifyAccount (@RequestBody Account accountData) {
         Account account = accountService.updateAccount(accountData);
         return new AccountDTO(account);
     }
 
-    @DeleteMapping (value = "/{accountNumber}")
+    @PostMapping (value = "/{accountNumber}/delete")
     public boolean deleteAccount (@PathVariable String accountNumber) {
         return accountService.deleteAccount(accountNumber);
     }

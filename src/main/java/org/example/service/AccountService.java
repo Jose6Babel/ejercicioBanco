@@ -2,11 +2,9 @@ package org.example.service;
 
 import org.example.exceptions.AccountException;
 import org.example.model.Account;
-import org.example.model.DTO.AccountDTO;
 import org.example.repository.IAccountDB;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,11 +17,8 @@ public class AccountService implements IAccountService{
     }
 
     @Override
-    public List<AccountDTO> getAccounts() {
-        return accountDB.getAccounts()
-                .stream()
-                .map(AccountDTO::new)
-                .toList();
+    public List<Account> getAccounts() {
+        return accountDB.getAccounts();
     }
 
     @Override
